@@ -79,6 +79,8 @@ ecommerce-monolith/
 ### Definition
 An approach where applications are built as a collection of loosely coupled, independently deployable services.
 
+**Reference Implementation**: [ExpressMicroservice](https://github.com/monijaman/ExpressMicroservice)
+
 ### Characteristics
 ```
 ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
@@ -137,6 +139,8 @@ ecommerce-microservices/
 ### Microservices Patterns
 
 #### Service Discovery
+**Service Discovery** enables microservices to find and communicate with each other dynamically. In a distributed system, services need to locate other services without hardcoding IP addresses or hostnames. Service discovery maintains a registry of available services and their locations, allowing services to register themselves and discover others at runtime.
+
 ```javascript
 // Consul service registration
 const consul = require('consul')();
@@ -157,6 +161,8 @@ const services = await consul.health.service('user-service');
 ```
 
 #### Circuit Breaker
+**Circuit Breaker** protects services from cascading failures by monitoring service calls and temporarily stopping requests to a failing service. When a service fails repeatedly, the circuit breaker "opens" to prevent further calls, allowing the failing service time to recover. After a timeout, it allows limited requests to test if the service has recovered.
+
 ```javascript
 const CircuitBreaker = require('opossum');
 
@@ -173,6 +179,8 @@ breaker.on('open', () => console.log('Circuit breaker opened'));
 ```
 
 #### API Gateway
+**API Gateway** acts as a single entry point for all client requests to microservices. It handles cross-cutting concerns like authentication, rate limiting, request routing, and response transformation. The gateway routes requests to appropriate services, aggregates responses, and provides a unified API interface to clients.
+
 ```javascript
 // Express Gateway configuration
 http:
