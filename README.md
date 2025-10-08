@@ -24,18 +24,18 @@ A comprehensive guide to mastering the skills and knowledge required to excel as
 ### System Design
 - **[Large-scale distributed system design](./core-architectural-skills/system-design/distributed-systems.md)** (microservices, event-driven, CQRS, etc.)
 - **[Scalability patterns](./core-architectural-skills/system-design/scalability.md):** horizontal vs. vertical scaling, caching strategies
-- **Fault tolerance, resilience, and high availability**
-- **CAP theorem and trade-offs**
-- **API design** (REST, GraphQL, gRPC)
-- **Message queues and event buses** (Kafka, RabbitMQ, etc.)
-- **System boundaries & domain decomposition**
+- **[Fault tolerance, resilience, and high availability](./core-architectural-skills/system-design/fault-tolerance.md)**
+- **[CAP theorem and trade-offs](./core-architectural-skills/system-design/cap-theorem.md)**
+- **[API design](./core-architectural-skills/system-design/api-design.md)** (REST, GraphQL, gRPC)
+- **[Message queues and event buses](./core-architectural-skills/system-design/messaging.md)** (Kafka, RabbitMQ, etc.)
+- **[System boundaries & domain decomposition](./core-architectural-skills/system-design/system-boundaries.md)**
 
 ### Architecture Patterns
 - **[Monolith vs. Microservices vs. Modular Monolith](./core-architectural-skills/architecture-patterns/architectural-styles.md)**
 - **[Event-Driven Architecture](./core-architectural-skills/architecture-patterns/event-driven.md)** and **[Serverless Architecture](./core-architectural-skills/architecture-patterns/serverless.md)**
 - **[Clean Architecture](./core-architectural-skills/architecture-patterns/clean-architecture.md)**, **[Hexagonal](./core-architectural-skills/architecture-patterns/hexagonal-architecture.md)**, and **[Onion](./core-architectural-skills/architecture-patterns/onion-architecture.md)**
 - **[Domain-Driven Design (DDD)](./core-architectural-skills/architecture-patterns/domain-driven-design.md)**
-- **Event Sourcing, CQRS**
+- **[Event Sourcing & CQRS](./core-architectural-skills/architecture-patterns/event-sourcing-cqrs.md)**
 
 ---
 
