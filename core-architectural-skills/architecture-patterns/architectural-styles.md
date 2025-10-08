@@ -34,21 +34,21 @@ A monolithic application is deployed as a single unit where all components are i
 ```
 
 ### Advantages
-✅ **Simple Development**: Single codebase, familiar development patterns
-✅ **Easy Testing**: Simple end-to-end testing, no network complexity
-✅ **Simple Deployment**: Single deployable unit
-✅ **Performance**: No network latency between components
-✅ **ACID Transactions**: Easy to maintain data consistency
-✅ **Debugging**: Straightforward debugging and monitoring
-✅ **IDE Support**: Better tooling support for single codebase
+- ✅ **Simple Development**: Single codebase, familiar development patterns
+- ✅ **Easy Testing**: Simple end-to-end testing, no network complexity
+- ✅ **Simple Deployment**: Single deployable unit
+- ✅ **Performance**: No network latency between components
+- ✅ **ACID Transactions**: Easy to maintain data consistency
+- ✅ **Debugging**: Straightforward debugging and monitoring
+- ✅ **IDE Support**: Better tooling support for single codebase
 
 ### Disadvantages
-❌ **Scaling Limitations**: Scale entire application, not individual components
-❌ **Technology Lock-in**: Difficult to use different technologies
-❌ **Large Team Coordination**: Multiple teams working on same codebase
-❌ **Deployment Risk**: Small change requires full application deployment
-❌ **Code Complexity**: Can become large and difficult to understand
-❌ **Single Point of Failure**: If one component fails, entire app can fail
+- ❌ **Scaling Limitations**: Scale entire application, not individual components
+- ❌ **Technology Lock-in**: Difficult to use different technologies
+- ❌ **Large Team Coordination**: Multiple teams working on same codebase
+- ❌ **Deployment Risk**: Small change requires full application deployment
+- ❌ **Code Complexity**: Can become large and difficult to understand
+- ❌ **Single Point of Failure**: If one component fails, entire app can fail
 
 ### Example Structure
 ```
@@ -96,22 +96,22 @@ An approach where applications are built as a collection of loosely coupled, ind
 ```
 
 ### Advantages
-✅ **Independent Scaling**: Scale services based on demand
-✅ **Technology Diversity**: Different technologies for different services
-✅ **Team Autonomy**: Teams can work independently
-✅ **Fault Isolation**: Failure in one service doesn't affect others
-✅ **Faster Deployment**: Deploy individual services independently
-✅ **Better Modularity**: Clear service boundaries
-✅ **Organizational Alignment**: Services align with business capabilities
+- ✅ **Independent Scaling**: Scale services based on demand
+- ✅ **Technology Diversity**: Different technologies for different services
+- ✅ **Team Autonomy**: Teams can work independently
+- ✅ **Fault Isolation**: Failure in one service doesn't affect others
+- ✅ **Faster Deployment**: Deploy individual services independently
+- ✅ **Better Modularity**: Clear service boundaries
+- ✅ **Organizational Alignment**: Services align with business capabilities
 
 ### Disadvantages
-❌ **Distributed System Complexity**: Network latency, failures, consistency
-❌ **Operational Overhead**: More moving parts to monitor and manage
-❌ **Data Management**: Distributed transactions, eventual consistency
-❌ **Testing Complexity**: Integration testing across services
-❌ **Network Communication**: Inter-service communication overhead
-❌ **Service Discovery**: Managing service locations and health
-❌ **Initial Development Overhead**: More setup and infrastructure
+- ❌ **Distributed System Complexity**: Network latency, failures, consistency
+- ❌ **Operational Overhead**: More moving parts to monitor and manage
+- ❌ **Data Management**: Distributed transactions, eventual consistency
+- ❌ **Testing Complexity**: Integration testing across services
+- ❌ **Network Communication**: Inter-service communication overhead
+- ❌ **Service Discovery**: Managing service locations and health
+- ❌ **Initial Development Overhead**: More setup and infrastructure
 
 ### Example Structure
 ```
@@ -215,19 +215,19 @@ A monolithic application organized into modules with well-defined boundaries, wh
 ```
 
 ### Advantages
-✅ **Module Boundaries**: Clear separation of concerns
-✅ **Simple Deployment**: Single deployment unit
-✅ **Performance**: No network overhead between modules
-✅ **ACID Transactions**: Cross-module transactions possible
-✅ **Easier Migration**: Can extract modules to services later
-✅ **Team Boundaries**: Teams can own specific modules
-✅ **Shared Infrastructure**: Common logging, monitoring, security
+- ✅ **Module Boundaries**: Clear separation of concerns
+- ✅ **Simple Deployment**: Single deployment unit
+- ✅ **Performance**: No network overhead between modules
+- ✅ **ACID Transactions**: Cross-module transactions possible
+- ✅ **Easier Migration**: Can extract modules to services later
+- ✅ **Team Boundaries**: Teams can own specific modules
+- ✅ **Shared Infrastructure**: Common logging, monitoring, security
 
 ### Disadvantages
-❌ **Technology Constraints**: All modules use same technology stack
-❌ **Coupled Deployment**: Must deploy entire application
-❌ **Module Coupling**: Risk of tight coupling between modules
-❌ **Scaling**: Cannot scale individual modules independently
+- ❌ **Technology Constraints**: All modules use same technology stack
+- ❌ **Coupled Deployment**: Must deploy entire application
+- ❌ **Module Coupling**: Risk of tight coupling between modules
+- ❌ **Scaling**: Cannot scale individual modules independently
 
 ### Example Structure
 ```
