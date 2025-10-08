@@ -164,26 +164,50 @@ class OrderQueryHandler {
 **Event Streaming** processes continuous streams of events in real-time. Events are processed as they arrive, enabling immediate reactions.
 
 ```javascript
-// Apache Kafka Event Streaming
+// Apache Kafka Event Streaming with error handling
 const kafka = require('kafka-node');
 
 const consumer = new kafka.Consumer(
   new kafka.Client(),
   [{ topic: 'user-events', partition: 0 }],
-  { autoCommit: true }
+  { autoCommit: false } // Manual commit for better control
 );
 
 consumer.on('message', async (message) => {
-  const event = JSON.parse(message.value);
+  try {
+    const event = JSON.parse(message.value);
 
-  switch(event.type) {
-    case 'UserCreated':
-      await sendWelcomeEmail(event.userId);
-      break;
-    case 'UserLoggedIn':
-      await updateLastLogin(event.userId);
-      break;
+    // Validate event structure
+    if (!event.type || !event.userId) {
+      console.error('Invalid event structure:', event);
+      return;
+    }
+
+    switch(event.type) {
+      case 'UserCreated':
+        await sendWelcomeEmail(event.userId);
+        break;
+      case 'UserLoggedIn':
+        await updateLastLogin(event.userId);
+        break;
+      default:
+        console.warn('Unknown event type:', event.type);
+    }
+
+    // Manual commit after successful processing
+    consumer.commit((err, data) => {
+      if (err) console.error('Commit error:', err);
+    });
+
+  } catch (error) {
+    console.error('Error processing event:', error);
+    // Send to dead letter queue or retry logic here
   }
+});
+
+// Handle consumer errors
+consumer.on('error', (err) => {
+  console.error('Consumer error:', err);
 });
 ```
 
@@ -278,6 +302,62 @@ class EventStore {
 4. **Version Events**: Plan for event schema evolution
 5. **Keep Events Small**: Avoid large payloads in events
 
+### Event Versioning & Schema Evolution
+```javascript
+// Versioned Event Structure
+class OrderPlacedEventV1 {
+  constructor(orderId, customerId, items, totalAmount) {
+    this.eventType = 'OrderPlaced';
+    this.eventVersion = '1.0';
+    this.orderId = orderId;
+    this.customerId = customerId;
+    this.items = items;
+    this.totalAmount = totalAmount;
+    this.timestamp = new Date();
+  }
+}
+
+// Backward Compatible Event (V2 adds shippingAddress)
+class OrderPlacedEventV2 {
+  constructor(orderId, customerId, items, totalAmount, shippingAddress = null) {
+    this.eventType = 'OrderPlaced';
+    this.eventVersion = '2.0';
+    this.orderId = orderId;
+    this.customerId = customerId;
+    this.items = items;
+    this.totalAmount = totalAmount;
+    this.shippingAddress = shippingAddress; // New optional field
+    this.timestamp = new Date();
+  }
+
+  // Factory method for backward compatibility
+  static fromV1(v1Event) {
+    return new OrderPlacedEventV2(
+      v1Event.orderId,
+      v1Event.customerId,
+      v1Event.items,
+      v1Event.totalAmount,
+      null // Default shipping address
+    );
+  }
+}
+
+// Event Consumer with Version Handling
+class OrderEventConsumer {
+  async handleEvent(rawEvent) {
+    let event = rawEvent;
+
+    // Handle version compatibility
+    if (rawEvent.eventVersion === '1.0') {
+      event = OrderPlacedEventV2.fromV1(rawEvent);
+    }
+
+    // Process with latest version
+    await this.processOrderPlaced(event);
+  }
+}
+```
+
 ### Implementation Guidelines
 1. **Idempotent Consumers**: Handle duplicate events gracefully
 2. **Dead Letter Queues**: Handle events that cannot be processed
@@ -290,7 +370,50 @@ class EventStore {
 - **Event Chains**: Avoid long chains of dependent events
 - **Event Pollution**: Don't publish events for every minor state change
 - **Tight Coupling**: Consumers shouldn't depend on producer implementation details
+- **Missing Event Versioning**: Always version events for schema evolution
 
----
+### Testing Event-Driven Systems
+```javascript
+// Testing event publishing
+describe('OrderService', () => {
+  let eventBusSpy;
+
+  beforeEach(() => {
+    eventBusSpy = { publish: jest.fn() };
+  });
+
+  it('should publish OrderPlaced event when order is created', async () => {
+    const service = new OrderService(mockRepository, eventBusSpy);
+
+    await service.placeOrder(orderData);
+
+    expect(eventBusSpy.publish).toHaveBeenCalledWith(
+      'order.placed',
+      expect.objectContaining({
+        eventType: 'OrderPlaced',
+        orderId: expect.any(String)
+      })
+    );
+  });
+});
+
+// Testing event consumption
+describe('OrderEventConsumer', () => {
+  it('should send confirmation email when order is placed', async () => {
+    const emailServiceSpy = { sendConfirmation: jest.fn() };
+    const consumer = new OrderEventConsumer(emailServiceSpy);
+
+    const event = {
+      eventType: 'OrderPlaced',
+      orderId: '123',
+      customerId: '456'
+    };
+
+    await consumer.handleEvent(event);
+
+    expect(emailServiceSpy.sendConfirmation).toHaveBeenCalledWith('456');
+  });
+});
+```
 
 *Return to [Architecture Patterns Overview](./README.md) or [Core Architectural Skills](../README.md)*
