@@ -18,9 +18,12 @@ A comprehensive guide to mastering the skills and knowledge required to excel as
 
 ## 🧠 1. Core Architectural Skills
 
+### 📖 Detailed Learning Materials
+**[📁 Explore Core Architectural Skills](./core-architectural-skills/README.md)** - Complete deep-dive guides and examples
+
 ### System Design
-- **Large-scale distributed system design** (microservices, event-driven, CQRS, etc.)
-- **Scalability:** horizontal vs. vertical scaling, caching strategies
+- **[Large-scale distributed system design](./core-architectural-skills/system-design/distributed-systems.md)** (microservices, event-driven, CQRS, etc.)
+- **[Scalability patterns](./core-architectural-skills/system-design/scalability.md):** horizontal vs. vertical scaling, caching strategies
 - **Fault tolerance, resilience, and high availability**
 - **CAP theorem and trade-offs**
 - **API design** (REST, GraphQL, gRPC)
@@ -28,7 +31,7 @@ A comprehensive guide to mastering the skills and knowledge required to excel as
 - **System boundaries & domain decomposition**
 
 ### Architecture Patterns
-- **Monolith vs. Microservices vs. Modular Monolith**
+- **[Monolith vs. Microservices vs. Modular Monolith](./core-architectural-skills/architecture-patterns/architectural-styles.md)**
 - **Event-driven and serverless architectures**
 - **Clean Architecture, Hexagonal Architecture, Onion Architecture**
 - **Domain-Driven Design (DDD)**
