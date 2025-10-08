@@ -18,6 +18,8 @@ Master the fundamental architectural styles and patterns that form the backbone 
 - [🎯 Event-Driven Architecture](./event-driven.md)
 - [⚡ Serverless Architecture](./serverless.md)
 - [🎯 Clean Architecture](./clean-architecture.md)
+- [⬡ Hexagonal Architecture](./hexagonal-architecture.md)
+- [🧅 Onion Architecture](./onion-architecture.md)
 - [🎨 Domain-Driven Design](./domain-driven-design.md)
 - [📝 Event Sourcing & CQRS](./event-sourcing-cqrs.md)
 

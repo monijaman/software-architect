@@ -33,7 +33,7 @@ A comprehensive guide to mastering the skills and knowledge required to excel as
 ### Architecture Patterns
 - **[Monolith vs. Microservices vs. Modular Monolith](./core-architectural-skills/architecture-patterns/architectural-styles.md)**
 - **[Event-Driven Architecture](./core-architectural-skills/architecture-patterns/event-driven.md)** and **[Serverless Architecture](./core-architectural-skills/architecture-patterns/serverless.md)**
-- **Clean Architecture, Hexagonal Architecture, Onion Architecture**
+- **[Clean, Hexagonal, and Onion Architectures](./core-architectural-skills/architecture-patterns/clean-hex-onion.md)**
 - **Domain-Driven Design (DDD)**
 - **Event Sourcing, CQRS**
 
